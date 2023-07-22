@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import InfoTooltip from '../components/InfoTooltip';
-
 
 export default function Register() {
   const [isValidRegister, setValidRegister] = useState(false);
@@ -17,11 +16,6 @@ export default function Register() {
     setRegisterPopupClick(true)
   }
 
-  useEffect(() => {
-    console.log('ValidRegister mudado')
-    console.log(isValidRegister)
-  }, [isValidRegister])
-
   return (
     <div className="page">
       <Header />
@@ -35,7 +29,7 @@ export default function Register() {
           <button type='submit' onClick={onSubmitClick} className='auth-form__button'>Inscrever-se</button>
           <p>Já é um membro ? Faça Login aqui!</p>
         </form>
-        {isRegisterPopupOpen && <InfoTooltip isValidRegister={isValidRegister} popupState={setRegisterPopupClick} />}
+        {isRegisterPopupOpen && <InfoTooltip isValidRegister={isValidRegister} setPopupState={setRegisterPopupClick} />}
       </div>
     </div>
   )

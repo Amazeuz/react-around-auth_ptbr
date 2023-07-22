@@ -11,6 +11,7 @@
 @import url(./blocks/form/form.css);
 @import url(./blocks/auth-form/auth-form.css);
 @import url(./blocks/root/root.css);
+@import url(./blocks/register-popup/register-popup.css);
 
 @import url(./blocks/header/__title/header__title.css);
 
