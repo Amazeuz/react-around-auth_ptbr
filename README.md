@@ -1,8 +1,21 @@
-Around the U.S. project on React, featuring authorization and registration.
+Around the U.S
 
-This repository will contain your own front-end project on React with added authorization and registration features.
-Start working with your previously built front end code from Sprint 12.
+Around the U.S é uma rede social de compartilhamento de imagens e informações entre os usuários. A página possúi funcionalidades como abrir formulários, abrir a imagem do card clicado, editar nome e descrição, mudar foto de perfil, adicionar novos cards, curtir cards e deletar cards.
 
-All authorization, registration and token requests must go through to the server running on [https://register.nomoreparties.co](https://register.nomoreparties.co/).
+A página é altamente responsiva, com diferentes layouts para diferentes tipos de dispositivos:
 
-Good luck!
+- Até 414px;
+- 414px a 600px;
+- 600px a 894px;
+
+- Resoluções superiores;
+
+Nesse projeto foram utilizados algumas tecnologias desenvolvimento web, como HTML, CSS e Javascript de git e metodologia BEM, webpack, React, além de suporte para a API do servidor.
+
+Funcionalidades a serem adicionadas:
+
+- Validação de formulário
+- Popup 'Tem certeza ?' ao excluir cartões
+- Fechar Popup apenas com o fim da solicitação a API
+
+Link do site para github pages: https://amazeuz.github.io/around-react_ptbr/
