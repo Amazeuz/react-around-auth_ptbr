@@ -21,7 +21,7 @@ export default function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupClick] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupClick] = useState(false)
   const [pageOpacity, setPageOpacity] = useState(false);
-  const [selectedCard, setSelectedCard] = useState('')
+  const [selectedCard, setSelectedCard] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
   function handleCardLike(card) {
@@ -131,19 +131,19 @@ export default function App() {
   }
 
   return (
-    <Router>
-      <Switch>
-        <Route path='/signup'>
-          <Register />
-        </Route>
-        <Route path='/signin'>
-          <Login />
-        </Route>
-        <ProtectedRoute exact path='/' loggedIn={loggedIn}>
-          <CurrentUserContext.Provider value={currentUser}>
-            <div className="page">
-              <div className={pageOpacity ? 'page-opacity' : ''} id="opacity-block">
-                <Header />
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="page">
+        <div className={pageOpacity ? 'page-opacity' : ''} id="opacity-block">
+          <Header />
+          <Router>
+            <Switch>
+              <Route path='/signup'>
+                <Register />
+              </Route>
+              <Route path='/signin'>
+                <Login />
+              </Route>
+              <ProtectedRoute exact path='/' loggedIn={loggedIn}>
                 <Main
                   onAddPlaceClick={onAddPlaceClick}
                   onEditAvatarClick={onEditAvatarClick}
@@ -154,15 +154,15 @@ export default function App() {
                   cardList={cards}
                 />
                 <Footer />
-              </div>
-              <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-              <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
-              <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateCards={handleAddPlaceSubmit} cardList={cards} />
-              <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-            </div>
-          </CurrentUserContext.Provider>
-        </ProtectedRoute>
-      </Switch>
-    </Router>
+              </ProtectedRoute>
+            </Switch>
+          </Router>
+        </div>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onUpdateCards={handleAddPlaceSubmit} cardList={cards} />
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
