@@ -4,14 +4,13 @@ import vectorIconSrc from '../images/logo/Vector.svg'
 
 function Header() {
   const currentURL = window.location.href.split('/')[3];
-  console.log(currentURL)
 
-  function setHeaderText() {
+  function setHeaderLinks() {
     if (currentURL === 'signup') {
       return <a href='/signin' className='header__link'>Faça o login</a>
     }
     else if (currentURL === 'signin') {
-      return <a href='/signup' className='header__link'>Entrar</a>
+      return <a href='/signup' className='header__link'>Inscreva-se</a>
     }
   }
 
@@ -20,7 +19,7 @@ function Header() {
       <div className='header__container'>
         <img src={vectorIconSrc} id="vector-icon" className="header__title" alt="Logotipo Around The U.S." />
         <div>
-          {setHeaderText()}
+          {setHeaderLinks()}
         </div>
       </div>
       <img src={lineIconSrc} id="line-icon" alt="Linha escura horizontal percorrendo o cabeçalho" />

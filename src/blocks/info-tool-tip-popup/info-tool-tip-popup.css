@@ -1,4 +1,4 @@
-.register-popup {
+.info-tool-tip-popup {
   background-color: white;
   max-width: 430px;
   max-height: 330px;
@@ -13,17 +13,4 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-
-.register-popup>img {
-  max-width: 120px;
-  max-height: 120px;
-}
-
-.register-popup>p {
-  font-size: 24px;
-  font-weight: 900;
-  line-height: 29px;
-  letter-spacing: 0em;
-  text-align: center;
 }

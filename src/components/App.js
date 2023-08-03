@@ -24,6 +24,10 @@ export default function App() {
   const [selectedCard, setSelectedCard] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
 
+  function getAPI() {
+    return fetch('https://register.nomoreparties.co')
+  }
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
