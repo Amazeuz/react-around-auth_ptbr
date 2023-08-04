@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom'
 import InfoTooltip from '../components/InfoTooltip';
-import * as auth from '../auth'
+import { register } from '../auth';
 
 export default function Register() {
   const [isValidRegister, setValidRegister] = useState(false);
@@ -13,32 +13,33 @@ export default function Register() {
     password: ''
   }
 
-  function validateRegister() {
+  /*function validateRegister() {
+    console.log('validação chamada')
     const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
     // test@gmail.com;
     const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     // 8 caracteres, letra e número;
-
+    console.log(inputsValue.email, inputsValue.password)
     if (inputsValue.email.match(emailRegEx) && inputsValue.password.match(passwordRegEx)) {
+      console.log('vrau')
       setValidRegister(true);
+      console.log(isValidRegister)
     }
     setRegisterPopupClick(true);
-  }
+  }*/
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    validateRegister()
-
-    if (isValidRegister) {
-      auth.register(inputsValue.email, inputsValue.password)
-        .then((res) => {
-          if (res) {
-            history.push('/login')
-          } else {
-            console.log('Algo deu Errado !')
-          }
-        })
-    }
+    register(inputsValue.email, inputsValue.password)
+      .then((res) => {
+        if (res.ok) {
+          setValidRegister(true);
+          history.push('/signin');
+        } else {
+          console.log(`Erro ${res.status}: Um dos campos não foi preenchido corretamente`)
+        }
+      })
+    setRegisterPopupClick(true)
   }
 
   function handleChange(evt) {

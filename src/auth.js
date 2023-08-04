@@ -1,7 +1,7 @@
 export const BASE_URL = 'https://register.nomoreparties.co';
 
 export const register = (email, password) => {
-  return fetch(`${BASE_URL}/auth/local/register`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -9,33 +9,35 @@ export const register = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-    .then((response) => {
-      return response.json();
-    })
     .then((res) => {
       return res;
     })
     .catch(err => {
-      err.status(400).err.send({ message: 'Os dados passados são inválidos ' + err.message })
+      console.log(err)
     })
 };
-export const authorize = (identifier, password) => {
-  return fetch(`${BASE_URL}/auth/local`, {
+export const authorize = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ identifier, password })
+    body: JSON.stringify({ email, password })
   })
-    .then((response => response.json()))
     .then((data) => {
       if (data.user) {
         localStorage.setItem('jwt', data.jwt);
         return data;
       }
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+      if (err.statusCode === 400) {
+        err.status(400).send({ message: 'Um ou mais campos não foram fornecidos' });
+      } else if (err.statusCode === 404) {
+        err.status(401).send({ message: 'O usuário com o e-mail especificado não foi encontrado ' });
+      }
+    })
 };
 export const checkToken = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
