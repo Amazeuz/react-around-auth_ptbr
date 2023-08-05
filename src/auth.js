@@ -25,18 +25,23 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
+    //.then(vrau => console.log('autorização sendo chamada'))
+    .then((res => res.json()))
     .then((data) => {
-      if (data.user) {
+      console.log(data)
+      if (data.token) {
+        console.log('DEU CERTO')
         localStorage.setItem('jwt', data.jwt);
         return data;
       }
     })
     .catch(err => {
-      if (err.statusCode === 400) {
+      console.log(err)
+      /*if (err.statusCode === 400) {
         err.status(400).send({ message: 'Um ou mais campos não foram fornecidos' });
       } else if (err.statusCode === 404) {
         err.status(401).send({ message: 'O usuário com o e-mail especificado não foi encontrado ' });
-      }
+      }*/
     })
 };
 export const checkToken = (token) => {

@@ -13,21 +13,6 @@ export default function Register() {
     password: ''
   }
 
-  /*function validateRegister() {
-    console.log('validação chamada')
-    const emailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    // test@gmail.com;
-    const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    // 8 caracteres, letra e número;
-    console.log(inputsValue.email, inputsValue.password)
-    if (inputsValue.email.match(emailRegEx) && inputsValue.password.match(passwordRegEx)) {
-      console.log('vrau')
-      setValidRegister(true);
-      console.log(isValidRegister)
-    }
-    setRegisterPopupClick(true);
-  }*/
-
   function handleSubmit(evt) {
     evt.preventDefault();
     register(inputsValue.email, inputsValue.password)

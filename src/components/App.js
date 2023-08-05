@@ -118,6 +118,10 @@ export default function App() {
     }
   }
 
+  function handleLogin() {
+    setLoggedIn(true);
+  }
+
   function handleAddPlaceSubmit(name, link) {
     if (name.replace(/ /g, '').length > 0 && isValidUrl(link)) {
       api.addServerCard(name, link.replace(/ /g, '')).then(newCard => {
@@ -145,7 +149,7 @@ export default function App() {
                 <Register />
               </Route>
               <Route path='/signin'>
-                <Login />
+                <Login handleLogin={handleLogin} />
               </Route>
               <ProtectedRoute exact path='/' loggedIn={loggedIn}>
                 <Main

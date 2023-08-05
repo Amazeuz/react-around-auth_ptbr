@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { authorize, checkToken } from '../auth';
 import InfoTooltip from '../components/InfoTooltip';
 
-export default function Login() {
+export default function Login({ handleLogin }) {
   const [isLoginPopupOpen, setLoginPopupClick] = useState(false);
   const [isValidLogin, setValidLogin] = useState(false);
   const history = useHistory();
@@ -26,11 +26,14 @@ export default function Login() {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(inputsValue)
 
     authorize(inputsValue.email, inputsValue.password)
       .then((res) => {
+        console.log(res)
         if (res) {
-          history.push('/')
+          handleLogin();
+          history.push('/');
         } else {
           console.log('Algo deu Errado !')
         }
