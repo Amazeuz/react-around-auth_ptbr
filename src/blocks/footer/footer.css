@@ -1,10 +1,10 @@
 .footer {
   width: 100%;
   max-width: 880px;
-  margin:0 auto 60px;
+  margin: 0 auto 20px;
 }
 
-.footer > h1 {
+.footer>h1 {
   color: #545454;
   font-weight: 400;
   font-size: 18px;
@@ -25,7 +25,7 @@
     margin-bottom: 36px;
   }
 
-  .footer > div {
+  .footer>div {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;

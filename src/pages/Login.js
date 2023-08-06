@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { authorize, checkToken } from '../auth';
+import { authorize } from '../auth';
 import InfoTooltip from '../components/InfoTooltip';
+import { getContent } from '../auth';
 
 export default function Login({ handleLogin }) {
   const [isLoginPopupOpen, setLoginPopupClick] = useState(false);
-  const [isValidLogin, setValidLogin] = useState(false);
   const history = useHistory();
 
   const inputsValue = {
@@ -13,11 +13,20 @@ export default function Login({ handleLogin }) {
     password: ''
   }
 
-  /*const tokenStatus = checkToken(localStorage.getItem('jwt'));
+  function checkToken() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      getContent(jwt)
+        .then(res => {
+          if (res) {
+            handleLogin();
+            history.push('/');
+          }
+        })
+    }
+  }
 
-  if (tokenStatus) {
-    history.push('/')
-  }*/
+  checkToken()
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -26,19 +35,17 @@ export default function Login({ handleLogin }) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    console.log(inputsValue)
 
     authorize(inputsValue.email, inputsValue.password)
       .then((res) => {
-        console.log(res)
         if (res) {
           handleLogin();
           history.push('/');
-        } else {
-          console.log('Algo deu Errado !')
+        }
+        else {
+          setLoginPopupClick(true);
         }
       })
-    setLoginPopupClick(true);
   }
 
   return (
@@ -54,7 +61,7 @@ export default function Login({ handleLogin }) {
           Ainda não é membro ? Inscreva-se aqui!
         </Link>
       </form>
-      {isLoginPopupOpen && <InfoTooltip isValidLogin={isValidLogin} setPopupState={setLoginPopupClick} />}
+      {isLoginPopupOpen && <InfoTooltip isValidFields={false} setPopupState={setLoginPopupClick} method='login' />}
     </>
   )
 }

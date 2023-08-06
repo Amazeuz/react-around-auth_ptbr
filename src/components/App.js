@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header.js'
 import Main from './Main.js'
@@ -12,6 +13,7 @@ import Register from '../pages/Register.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import api from '../utils/api.js'
+import { getContent } from '../auth.js';
 
 export default function App() {
 
@@ -23,10 +25,7 @@ export default function App() {
   const [pageOpacity, setPageOpacity] = useState(false);
   const [selectedCard, setSelectedCard] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-
-  function getAPI() {
-    return fetch('https://register.nomoreparties.co')
-  }
+  const history = useHistory();
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -161,10 +160,10 @@ export default function App() {
                   onCardDelete={handleCardDelete}
                   cardList={cards}
                 />
-                <Footer />
               </ProtectedRoute>
             </Switch>
           </Router>
+          <Footer />
         </div>
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />

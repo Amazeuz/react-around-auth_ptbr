@@ -3,20 +3,34 @@ import loggedVector from '../images/logged_vector.svg';
 import notLoggedVector from '../images/not_logged_vector.svg';
 import exitIconSrc from '../images/vector__add.svg';
 
-export default function InfoTooltip({ isValidRegister, setPopupState }) {
+export default function InfoTooltip({ isValidFields, setPopupState, method }) {
+  console.log(isValidFields)
 
   function closeRegisterPopup() {
     setPopupState(false)
   }
 
+  function defineMethod() {
+    if (method === 'register') {
+      if (isValidFields) {
+        return 'Vitória ! Você conseguiu se registrar.'
+      } else {
+        return 'Ops ! Algo deu errado.'
+      }
+    }
+    else if (method === 'login') {
+      if (!isValidFields) {
+        return 'Ops ! Algo deu errado.'
+      }
+    }
+  }
+
   return (
     <div className='info-tool-tip-popup'>
       <img src={exitIconSrc} className="form__exit" onClick={closeRegisterPopup} alt="Botão de fechar o pop-up" />
-      <img src={isValidRegister ? loggedVector : notLoggedVector} className='info-tool-tip-popup__image' alt='Imagem com o status de login' />
+      <img src={isValidFields ? loggedVector : notLoggedVector} className='info-tool-tip-popup__image' alt='Imagem com o status de login' />
       <p className='info-tool-tip-popup__text'>
-        {isValidRegister
-          ? 'Vitória ! Você conseguiu se registrar.'
-          : 'Ops ! Algo deu errado'}
+        {defineMethod()}
       </p>
     </div>
   )

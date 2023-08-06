@@ -4,6 +4,7 @@ import InfoTooltip from '../components/InfoTooltip';
 import { register } from '../auth';
 
 export default function Register() {
+  console.log('register chamado')
   const [isValidRegister, setValidRegister] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupClick] = useState(false);
   const history = useHistory();
@@ -45,7 +46,7 @@ export default function Register() {
           Já é um membro ? Faça login aqui!
         </Link>
       </form>
-      {isRegisterPopupOpen && <InfoTooltip isValidRegister={isValidRegister} setPopupState={setRegisterPopupClick} />}
+      {isRegisterPopupOpen && <InfoTooltip isValidFields={isValidRegister} setPopupState={setRegisterPopupClick} method={'register'} />}
     </>
   )
 }

@@ -25,13 +25,10 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-    //.then(vrau => console.log('autorização sendo chamada'))
     .then((res => res.json()))
     .then((data) => {
-      console.log(data)
       if (data.token) {
-        console.log('DEU CERTO')
-        localStorage.setItem('jwt', data.jwt);
+        localStorage.setItem('jwt', data.token);
         return data;
       }
     })
@@ -44,7 +41,7 @@ export const authorize = (email, password) => {
       }*/
     })
 };
-export const checkToken = (token) => {
+export const getContent = (token) => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
