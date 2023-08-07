@@ -4,7 +4,6 @@ import notLoggedVector from '../images/not_logged_vector.svg';
 import exitIconSrc from '../images/vector__add.svg';
 
 export default function InfoTooltip({ isValidFields, setPopupState, method }) {
-  console.log(isValidFields)
 
   function closeRegisterPopup() {
     setPopupState(false)

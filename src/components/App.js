@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header.js'
 import Main from './Main.js'
@@ -25,7 +24,6 @@ export default function App() {
   const [pageOpacity, setPageOpacity] = useState(false);
   const [selectedCard, setSelectedCard] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
-  const history = useHistory();
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -121,6 +119,17 @@ export default function App() {
     setLoggedIn(true);
   }
 
+  function isValidToken() {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      return getContent(jwt)
+    }
+    else {
+      console.log('não tem jwt')
+    }
+  }
+
+
   function handleAddPlaceSubmit(name, link) {
     if (name.replace(/ /g, '').length > 0 && isValidUrl(link)) {
       api.addServerCard(name, link.replace(/ /g, '')).then(newCard => {
@@ -141,14 +150,14 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className={pageOpacity ? 'page-opacity' : ''} id="opacity-block">
-          <Header />
+          <Header isValidToken={isValidToken} loggedIn={loggedIn} />
           <Router>
             <Switch>
               <Route path='/signup'>
                 <Register />
               </Route>
               <Route path='/signin'>
-                <Login handleLogin={handleLogin} />
+                <Login handleLogin={handleLogin} isValidToken={isValidToken} />
               </Route>
               <ProtectedRoute exact path='/' loggedIn={loggedIn}>
                 <Main

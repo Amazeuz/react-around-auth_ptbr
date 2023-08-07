@@ -2,15 +2,27 @@ import React from 'react';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
 
-function Header() {
-  const currentURL = window.location.href.split('/')[3];
+function Header({ checkToken, loggedIn }) {
+  const currentURL = window.location.pathname;
+
+  function getUserEmail() {
+    checkToken()
+      .then((res) => {
+        console.log(res)
+      })
+  }
+
+  //getUserEmail()
 
   function setHeaderLinks() {
-    if (currentURL === 'signup') {
+    if (currentURL === '/signup') {
       return <a href='/signin' className='header__link'>Faça o login</a>
     }
     else if (currentURL === 'signin') {
       return <a href='/signup' className='header__link'>Inscreva-se</a>
+    }
+    else if (currentURL === '/') {
+      return <p className='header__link'>{loggedIn && getUserEmail()}</p>
     }
   }
 

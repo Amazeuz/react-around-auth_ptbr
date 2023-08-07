@@ -4,7 +4,6 @@ import InfoTooltip from '../components/InfoTooltip';
 import { register } from '../auth';
 
 export default function Register() {
-  console.log('register chamado')
   const [isValidRegister, setValidRegister] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupClick] = useState(false);
   const history = useHistory();
@@ -18,11 +17,11 @@ export default function Register() {
     evt.preventDefault();
     register(inputsValue.email, inputsValue.password)
       .then((res) => {
-        if (res.ok) {
+        if (res !== undefined) {
           setValidRegister(true);
           history.push('/signin');
         } else {
-          console.log(`Erro ${res.status}: Um dos campos não foi preenchido corretamente`)
+
         }
       })
     setRegisterPopupClick(true)

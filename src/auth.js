@@ -10,10 +10,15 @@ export const register = (email, password) => {
     body: JSON.stringify({ email, password })
   })
     .then((res) => {
-      return res;
+      if (res.ok) {
+        return res;
+      }
+      else {
+        return Promise.reject(res)
+      }
     })
     .catch(err => {
-      console.log(err)
+      console.error(`Erro ${err.status}: Um dos campos não foi preenchido corretamente`)
     })
 };
 export const authorize = (email, password) => {
@@ -25,20 +30,21 @@ export const authorize = (email, password) => {
     },
     body: JSON.stringify({ email, password })
   })
-    .then((res => res.json()))
-    .then((data) => {
-      if (data.token) {
-        localStorage.setItem('jwt', data.token);
-        return data;
+    .then((res) => {
+      console.log(res)
+      if (res.ok) {
+        return res.json()
+      }
+      else {
+        return Promise.reject(res);
       }
     })
     .catch(err => {
-      console.log(err)
-      /*if (err.statusCode === 400) {
-        err.status(400).send({ message: 'Um ou mais campos não foram fornecidos' });
-      } else if (err.statusCode === 404) {
-        err.status(401).send({ message: 'O usuário com o e-mail especificado não foi encontrado ' });
-      }*/
+      if (err.status === 400) {
+        console.error(`Erro ${err.status}: Um ou mais campos não foram fornecidos`)
+      } else if (err.status === 401) {
+        console.error(`Erro ${err.status}: O usuário com o e-mail especificado não foi encontrado `)
+      }
     })
 };
 export const getContent = (token) => {

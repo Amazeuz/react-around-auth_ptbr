@@ -1,32 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { authorize } from '../auth';
 import InfoTooltip from '../components/InfoTooltip';
-import { getContent } from '../auth';
 
-export default function Login({ handleLogin }) {
+const inputsValue = {
+  email: '',
+  password: ''
+}
+
+export default function Login({ handleLogin, isValidToken }) {
+  console.log(inputsValue)
   const [isLoginPopupOpen, setLoginPopupClick] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('')
   const history = useHistory();
 
-  const inputsValue = {
-    email: '',
-    password: ''
-  }
-
-  function checkToken() {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      getContent(jwt)
-        .then(res => {
-          if (res) {
-            handleLogin();
-            history.push('/');
-          }
-        })
+  (function () {
+    if (isValidToken()) {
+      handleLogin();
+      history.push('/');
     }
-  }
-
-  checkToken()
+  }());
 
   function handleChange(evt) {
     const { name, value } = evt.target;
@@ -36,9 +30,11 @@ export default function Login({ handleLogin }) {
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    authorize(inputsValue.email, inputsValue.password)
+    authorize(email, password)
       .then((res) => {
-        if (res) {
+        console.log(inputsValue)
+        if (res !== undefined) {
+          localStorage.setItem('jwt', res.token);
           handleLogin();
           history.push('/');
         }
