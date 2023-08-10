@@ -2,11 +2,11 @@ import React from 'react';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
 
-function Header({ checkToken, loggedIn }) {
+function Header({ isValidToken, loggedIn }) {
   const currentURL = window.location.pathname;
 
   function getUserEmail() {
-    checkToken()
+    isValidToken()
       .then((res) => {
         console.log(res)
       })

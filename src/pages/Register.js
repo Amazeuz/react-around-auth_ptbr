@@ -6,22 +6,17 @@ import { register } from '../auth';
 export default function Register() {
   const [isValidRegister, setValidRegister] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupClick] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const history = useHistory();
-
-  const inputsValue = {
-    email: '',
-    password: ''
-  }
 
   function handleSubmit(evt) {
     evt.preventDefault();
-    register(inputsValue.email, inputsValue.password)
+    register(email, password)
       .then((res) => {
         if (res !== undefined) {
           setValidRegister(true);
           history.push('/signin');
-        } else {
-
         }
       })
     setRegisterPopupClick(true)
@@ -29,7 +24,13 @@ export default function Register() {
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    inputsValue[name] = value;
+
+    if (name === 'email') {
+      setEmail(value)
+    }
+    else {
+      setPassword(value)
+    }
   }
 
   return (

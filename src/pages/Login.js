@@ -3,13 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { authorize } from '../auth';
 import InfoTooltip from '../components/InfoTooltip';
 
-const inputsValue = {
-  email: '',
-  password: ''
-}
-
 export default function Login({ handleLogin, isValidToken }) {
-  console.log(inputsValue)
   const [isLoginPopupOpen, setLoginPopupClick] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
@@ -20,11 +14,22 @@ export default function Login({ handleLogin, isValidToken }) {
       handleLogin();
       history.push('/');
     }
+    else {
+      console.error('Token inválido')
+    }
   }());
+
+  //localStorage.removeItem('jwt')
 
   function handleChange(evt) {
     const { name, value } = evt.target;
-    inputsValue[name] = value;
+
+    if (name === 'email') {
+      setEmail(value)
+    }
+    else {
+      setPassword(value)
+    }
   }
 
   function handleSubmit(evt) {
@@ -32,7 +37,6 @@ export default function Login({ handleLogin, isValidToken }) {
 
     authorize(email, password)
       .then((res) => {
-        console.log(inputsValue)
         if (res !== undefined) {
           localStorage.setItem('jwt', res.token);
           handleLogin();
