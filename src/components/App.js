@@ -47,8 +47,14 @@ export default function App() {
   useEffect(() => {
     api.loadUserInfo().then((data) => {
       setCurrentUser(data)
+      if (isValidToken()) {
+        isValidToken()
+          .then((result) => {
+            setCurrentUser(prev => ({ ...prev, email: result.data.email }))
+          })
+      }
     });
-  }, []);
+  }, [loggedIn]);
 
   function handleCardClick(evt) {
     const cardElement = evt.target.parentElement;
@@ -125,10 +131,9 @@ export default function App() {
       return getContent(jwt)
     }
     else {
-      console.log('não tem jwt')
+      console.error('não tem jwt')
     }
   }
-
 
   function handleAddPlaceSubmit(name, link) {
     if (name.replace(/ /g, '').length > 0 && isValidUrl(link)) {

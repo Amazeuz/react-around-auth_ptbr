@@ -4,6 +4,7 @@ const defaultUser = {
   name: "",
   about: "",
   avatar: "",
+  email: ""
 };
 
 export const CurrentUserContext = createContext(defaultUser);

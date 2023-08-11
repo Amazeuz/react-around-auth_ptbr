@@ -1,18 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Header({ isValidToken, loggedIn }) {
   const currentURL = window.location.pathname;
-
-  function getUserEmail() {
-    isValidToken()
-      .then((res) => {
-        console.log(res)
-      })
-  }
-
-  //getUserEmail()
+  const currentUser = useContext(CurrentUserContext)
 
   function setHeaderLinks() {
     if (currentURL === '/signup') {
@@ -22,9 +15,10 @@ function Header({ isValidToken, loggedIn }) {
       return <a href='/signup' className='header__link'>Inscreva-se</a>
     }
     else if (currentURL === '/') {
-      return <p className='header__link'>{loggedIn && getUserEmail()}</p>
+      return <p className='header__link'>{loggedIn && currentUser.email}</p>
     }
   }
+  //console.log(currentUser)
 
   return (
     <header className="header">
