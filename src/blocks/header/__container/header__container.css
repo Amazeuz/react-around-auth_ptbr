@@ -10,3 +10,11 @@
   color: white;
   column-gap: 20px;
 }
+
+@media screen and (max-width: 600px) {
+  .header__container {
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+  }
+}

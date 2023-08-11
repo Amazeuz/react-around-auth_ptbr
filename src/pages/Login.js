@@ -19,8 +19,6 @@ export default function Login({ handleLogin, isValidToken }) {
     }
   }());
 
-  //localStorage.removeItem('jwt')
-
   function handleChange(evt) {
     const { name, value } = evt.target;
 
