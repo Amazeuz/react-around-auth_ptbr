@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Header({ isValidToken, loggedIn }) {
+function Header({ isValidToken, loggedIn, handleLogout }) {
   const currentURL = window.location.pathname;
   const currentUser = useContext(CurrentUserContext)
   const history = useHistory();
@@ -28,8 +28,9 @@ function Header({ isValidToken, loggedIn }) {
   }
 
   function logoutSession() {
-    localStorage.removeItem('jwt')
-    history.push('/signin')
+    localStorage.removeItem('jwt');
+    handleLogout();
+    history.push('/signin');
   }
 
   return (

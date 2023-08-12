@@ -125,6 +125,10 @@ export default function App() {
     setLoggedIn(true);
   }
 
+  function handleLogout() {
+    setLoggedIn(false)
+  }
+
   function isValidToken() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
@@ -155,7 +159,7 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className={pageOpacity ? 'page-opacity' : ''} id="opacity-block">
-          <Header isValidToken={isValidToken} loggedIn={loggedIn} />
+          <Header isValidToken={isValidToken} loggedIn={loggedIn} handleLogout={handleLogout} />
           <Router>
             <Switch>
               <Route path='/signup'>
