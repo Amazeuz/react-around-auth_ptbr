@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
@@ -11,16 +11,17 @@ function Header({ isValidToken, loggedIn }) {
 
   function setHeaderLinks() {
     if (currentURL === '/signup') {
-      return <a href='/signin' className='header__text'>Faça o login</a>
+      return <a href='/signin' className='header__link'>Faça o login</a>
     }
     else if (currentURL === 'signin') {
-      return <a href='/signup' className='header__text'>Inscreva-se</a>
+      return <a href='/signup' className='header__link'>Inscreva-se</a>
     }
     else if (currentURL === '/') {
+      console.log('erri')
       return (
         <div className='header__text-container'>
           <p className='header__text'>{loggedIn && currentUser.email}</p>
-          <a className='header__text' onClick={logoutSession}>Sair</a>
+          <a className='header__logout' onClick={logoutSession}>Sair</a>
         </div>
       )
     }

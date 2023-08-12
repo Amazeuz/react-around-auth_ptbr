@@ -1,0 +1,12 @@
+.header__logout {
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  margin: auto;
+  cursor: pointer;
+}
+
+.header__logout:hover {
+  transition: opacity ease .5s;
+  opacity: 0.5;
+}

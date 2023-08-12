@@ -131,7 +131,7 @@ export default function App() {
       return getContent(jwt)
     }
     else {
-      console.error('não tem jwt')
+      console.error('Não há token')
     }
   }
 
