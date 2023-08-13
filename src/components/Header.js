@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function Header({ isValidToken, loggedIn, handleLogout }) {
+function Header({ loggedIn, handleLogout }) {
   const currentURL = window.location.pathname;
   const currentUser = useContext(CurrentUserContext)
   const history = useHistory();
@@ -13,15 +13,14 @@ function Header({ isValidToken, loggedIn, handleLogout }) {
     if (currentURL === '/signup') {
       return <a href='/signin' className='header__link'>Faça o login</a>
     }
-    else if (currentURL === 'signin') {
+    else if (currentURL === '/signin') {
       return <a href='/signup' className='header__link'>Inscreva-se</a>
     }
     else if (currentURL === '/') {
-      console.log('erri')
       return (
         <div className='header__text-container'>
           <p className='header__text'>{loggedIn && currentUser.email}</p>
-          <a className='header__logout' onClick={logoutSession}>Sair</a>
+          <a className='header__link' onClick={logoutSession}>Sair</a>
         </div>
       )
     }

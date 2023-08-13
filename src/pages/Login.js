@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { authorize } from '../auth';
 import InfoTooltip from '../components/InfoTooltip';
@@ -9,7 +9,7 @@ export default function Login({ handleLogin, isValidToken }) {
   const [password, setPassword] = useState('')
   const history = useHistory();
 
-  (function () {
+  useEffect(() => {
     if (isValidToken()) {
       handleLogin();
       history.push('/');
@@ -17,7 +17,7 @@ export default function Login({ handleLogin, isValidToken }) {
     else {
       console.error('Token inválido')
     }
-  }());
+  }, [])
 
   function handleChange(evt) {
     const { name, value } = evt.target;

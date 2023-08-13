@@ -30,4 +30,8 @@
     font-size: 14px;
     line-height: 17px;
   }
+
+  .footer>h1 {
+    text-align: center;
+  }
 }

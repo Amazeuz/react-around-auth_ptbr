@@ -1,6 +1,6 @@
 Around the U.S
 
-Around the U.S é uma rede social de compartilhamento de imagens e informações entre os usuários. A página possúi funcionalidades como abrir formulários, abrir a imagem do card clicado, editar nome e descrição, mudar foto de perfil, adicionar novos cards, curtir cards e deletar cards.
+Around the U.S é uma rede social de compartilhamento de imagens e informações entre os usuários. A página possúi funcionalidades como registro e login, login automático via token, abrir formulários, abrir a imagem do card clicado, editar nome e descrição, mudar foto de perfil, adicionar novos cards, curtir cards e deletar cards.
 
 A página é altamente responsiva, com diferentes layouts para diferentes tipos de dispositivos:
 

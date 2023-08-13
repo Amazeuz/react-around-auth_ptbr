@@ -28,7 +28,7 @@ export default function Register() {
     if (name === 'email') {
       setEmail(value)
     }
-    else {
+    else if (name === 'password') {
       setPassword(value)
     }
   }
