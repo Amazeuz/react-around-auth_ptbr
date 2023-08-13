@@ -1,4 +1,4 @@
-.header__logout {
+.header__link {
   color: white;
   text-decoration: none;
   text-align: center;
@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.header__logout:hover {
+.header__link:hover {
   transition: opacity ease .5s;
   opacity: 0.5;
 }

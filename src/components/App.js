@@ -134,9 +134,6 @@ export default function App() {
     if (jwt) {
       return getContent(jwt)
     }
-    else {
-      console.error('Não há token')
-    }
   }
 
   function handleAddPlaceSubmit(name, link) {
@@ -159,7 +156,7 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <div className={pageOpacity ? 'page-opacity' : ''} id="opacity-block">
-          <Header isValidToken={isValidToken} loggedIn={loggedIn} handleLogout={handleLogout} />
+          <Header loggedIn={loggedIn} handleLogout={handleLogout} />
           <Router>
             <Switch>
               <Route path='/signup'>
