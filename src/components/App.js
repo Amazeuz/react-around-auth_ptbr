@@ -15,6 +15,7 @@ import api from '../utils/api.js'
 import { getContent } from '../utils/auth.js';
 
 export default function App() {
+  console.log('chamado')
 
   const [cards, setCards] = useState([])
   const [currentUser, setCurrentUser] = useState('')

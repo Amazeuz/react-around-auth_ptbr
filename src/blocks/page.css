@@ -2,10 +2,15 @@ html {
   background-color: black;
 }
 
+.page {
+  height: 100vh;
+}
+
 .page>div {
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  row-gap: 50px;
+  justify-content: space-between;
   align-items: center;
 }
 
