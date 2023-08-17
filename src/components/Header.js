@@ -43,6 +43,6 @@ function Header({ loggedIn, handleLogout }) {
       <img src={lineIconSrc} id="line-icon" alt="Linha escura horizontal percorrendo o cabeçalho" />
     </header>
   );
-}
+};
 
 export default Header;
