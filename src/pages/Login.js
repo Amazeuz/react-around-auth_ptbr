@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { authorize } from '../auth';
+import { authorize } from '../utils/auth';
 import InfoTooltip from '../components/InfoTooltip';
 
 export default function Login({ handleLogin, isValidToken }) {

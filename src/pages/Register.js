@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import InfoTooltip from '../components/InfoTooltip';
-import { register } from '../auth';
+import { register } from '../utils/auth';
 
 export default function Register() {
   const [isValidRegister, setValidRegister] = useState(false);
   const [isRegisterPopupOpen, setRegisterPopupClick] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
+
 
   function handleSubmit(evt) {
     evt.preventDefault();
     register(email, password)
-      .then((res) => {
-        if (res !== undefined) {
+      .then(res => {
+        if (res) {
           setValidRegister(true);
-          history.push('/signin');
         }
       })
-    setRegisterPopupClick(true)
+      .then(() => {
+        setRegisterPopupClick(true)
+      })
   }
 
   function handleChange(evt) {

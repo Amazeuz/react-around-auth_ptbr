@@ -10,8 +10,9 @@ export const register = (email, password) => {
     body: JSON.stringify({ email, password })
   })
     .then((res) => {
+      console.log(res)
       if (res.ok) {
-        return res;
+        return res.ok;
       }
       else {
         return Promise.reject(res)
@@ -31,7 +32,6 @@ export const authorize = (email, password) => {
     body: JSON.stringify({ email, password })
   })
     .then((res) => {
-      console.log(res)
       if (res.ok) {
         return res.json()
       }

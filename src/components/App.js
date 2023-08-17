@@ -12,7 +12,7 @@ import Register from '../pages/Register.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import api from '../utils/api.js'
-import { getContent } from '../auth.js';
+import { getContent } from '../utils/auth.js';
 
 export default function App() {
 

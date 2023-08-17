@@ -20,7 +20,7 @@ function Header({ loggedIn, handleLogout }) {
       return (
         <div className='header__text-container'>
           <p className='header__text'>{loggedIn && currentUser.email}</p>
-          <a className='header__link' onClick={logoutSession}>Sair</a>
+          <button className='header__button' onClick={logoutSession}>Sair</button>
         </div>
       )
     }
