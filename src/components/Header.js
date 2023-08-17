@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import lineIconSrc from '../images/logo/Line.svg'
 import vectorIconSrc from '../images/logo/Vector.svg'

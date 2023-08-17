@@ -19,3 +19,5 @@ Funcionalidades a serem adicionadas:
 - Fechar Popup apenas com o fim da solicitação a API
 
 Link do site para github pages: https://amazeuz.github.io/around-react_ptbr/
+
+Link de vídeo demonstrativo: https://youtu.be/m_HzaOmqyyA
